@@ -4,6 +4,7 @@ import { DataSourceOptions } from 'typeorm';
 
 import { DatabaseModule } from '@src/infra/database/database.module';
 import { ParamterStoreModule } from '@src/infra/paramter-store/paramter-store.module';
+import { VehiclesController } from '@src/presentation/http/vehicles.controller';
 import { DATABASE_CONNECTION, LOGGER } from '@src/shared/constant/infra.constant';
 
 @Module({
@@ -18,7 +19,7 @@ import { DATABASE_CONNECTION, LOGGER } from '@src/shared/constant/infra.constant
       useFactory: (config: DataSourceOptions) => config,
     }),
   ],
-  controllers: [],
+  controllers: [VehiclesController],
   providers: [],
 })
 export class AppModule {}
