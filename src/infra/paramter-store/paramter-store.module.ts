@@ -1,9 +1,10 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
-import { DATABASE_CONNECTION } from '@src/shared/constant/infra.constant';
+import { DATABASE_CONNECTION, SERVICE_PORT } from '@src/shared/constant/infra.constant';
 
 import { DatabaseConfig } from './config/database.config';
+import { ServicePortConfig } from './config/service-port.config';
 
 @Module({})
 export class ParamterStoreModule {
@@ -14,13 +15,19 @@ export class ParamterStoreModule {
       imports: [ConfigModule.forRoot({ envFilePath: '.env' })],
       providers: [
         DatabaseConfig,
+        ServicePortConfig,
         {
           provide: DATABASE_CONNECTION,
           useFactory: (config: DatabaseConfig) => config.execute,
           inject: [DatabaseConfig],
         },
+        {
+          provide: SERVICE_PORT,
+          useFactory: (config: ServicePortConfig) => config.execute,
+          inject: [ServicePortConfig],
+        },
       ],
-      exports: [DATABASE_CONNECTION],
+      exports: [DATABASE_CONNECTION, SERVICE_PORT],
     };
   }
 }
