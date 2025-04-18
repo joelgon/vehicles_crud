@@ -81,7 +81,7 @@ export class InitialMigration1745017319165 implements MigrationInterface {
     await queryRunner.createIndex(
       'tb_vehicles',
       new TableIndex({
-        name: 'IDX_vehicle_chassis',
+        name: 'IDX_vehicle_chassi',
         columnNames: ['chassi'],
         isUnique: true,
       })
@@ -99,7 +99,7 @@ export class InitialMigration1745017319165 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropIndex('tb_vehicles', 'IDX_vehicle_renavam');
-    await queryRunner.dropIndex('tb_vehicles', 'IDX_vehicle_chassis');
+    await queryRunner.dropIndex('tb_vehicles', 'IDX_vehicle_chassi');
     await queryRunner.dropIndex('tb_vehicles', 'IDX_vehicle_license_plate');
     await queryRunner.dropTable('tb_vehicles', true);
   }

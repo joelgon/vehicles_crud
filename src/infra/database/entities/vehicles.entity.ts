@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, Index, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Index('IDX_vehicle_license_plate', ['licensePlate'], { unique: true })
-@Index('IDX_vehicle_chassis', ['chassis'], { unique: true })
+@Index('IDX_vehicle_chassis', ['chassi'], { unique: true })
 @Index('IDX_vehicle_renavam', ['renavam'], { unique: true })
 @Entity({ name: 'tb_vehicles', schema: 'public' })
 export class Vehicle {

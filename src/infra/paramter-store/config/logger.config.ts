@@ -18,12 +18,13 @@ export class LoggerConfig {
               target: 'pino-pretty',
               options: {
                 colorize: true,
-                translateTime: 'HH:MM:ss Z',
+                singleLine: true,
+                translateTime: 'yyyy-mm-dd HH:MM:ss.l o',
                 ignore: 'pid,hostname',
               },
             }
           : undefined,
-        redact: ['req.headers.authorization'],
+        redact: ['req.headers.authorization', 'req.headers.cookie', 'req.body.password'],
         genReqId: (req) => req.headers['x-request-id']?.toString() ?? randomUUID(),
         customProps: (req) => ({
           request_id: req.id,
