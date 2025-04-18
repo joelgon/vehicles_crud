@@ -40,10 +40,9 @@ module.exports = {
   },
   settings: {
     'import/resolver': {
-      node: {
-        extensions: ['.ts', '.js'],
+      typescript: {
+        alwaysTryTypes: true,
       },
-      typescript: {},
     },
   },
 };
