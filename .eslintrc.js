@@ -6,16 +6,13 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint/eslint-plugin', 'import'],
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
   root: true,
   env: {
     node: true,
     jest: true,
   },
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: ['.eslintrc.js', 'commitlint.config.js'],
   rules: {
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
@@ -24,14 +21,7 @@ module.exports = {
     'import/order': [
       'error',
       {
-        groups: [
-          'builtin',
-          'external',
-          'internal',
-          ['parent', 'sibling', 'index'],
-          'object',
-          'type',
-        ],
+        groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index'], 'object', 'type'],
         pathGroups: [
           {
             pattern: '@/**',
