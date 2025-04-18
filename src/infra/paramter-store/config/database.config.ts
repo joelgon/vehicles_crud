@@ -1,4 +1,4 @@
-import * as path from 'path';
+import path from 'path';
 
 import { Injectable } from '@nestjs/common';
 import { DataSourceOptions } from 'typeorm';
