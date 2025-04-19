@@ -54,13 +54,6 @@ export class Vehicle {
     description: 'Timestamp of the last update',
   })
   updatedAt: Date;
-
-  @ApiProperty({
-    required: false,
-    example: '2024-05-10T08:00:00.000Z',
-    description: 'Timestamp when the vehicle was soft-deleted (if applicable)',
-  })
-  deletedAt?: Date;
 }
 
 export class CreateVehicle extends PickType(Vehicle, ['licensePlate', 'chassi', 'renavam', 'model', 'brand', 'year'] as const) {}

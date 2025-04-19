@@ -59,11 +59,6 @@ export class InitialMigration1745017319165 implements MigrationInterface {
             type: 'timestamp',
             default: 'now()',
           },
-          {
-            name: 'deleted_at',
-            type: 'timestamp',
-            isNullable: true,
-          },
         ],
       }),
       true
