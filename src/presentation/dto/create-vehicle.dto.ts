@@ -75,6 +75,13 @@ export class CreateVehicleDto {
   @Transform(({ value }) => value.toUpperCase())
   brand: string;
 
+  @ApiProperty({
+    example: 2010,
+    description: 'Year',
+    required: true,
+    type: 'number',
+    format: 'number',
+  })
   @IsDefined({ message: 'Year is required' })
   @IsInt({ message: 'Year must be an integer' })
   @Min(1900, { message: 'Year must be at least 1900' })
