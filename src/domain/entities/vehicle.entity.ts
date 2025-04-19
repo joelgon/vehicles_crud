@@ -65,6 +65,6 @@ export class Vehicle {
 
 export class CreateVehicle extends PickType(Vehicle, ['licensePlate', 'chassi', 'renavam', 'model', 'brand', 'year'] as const) {}
 
-export class UpdateVehicle extends PartialType(CreateVehicle) {}
+export class UpdateVehicle extends PartialType(PickType(Vehicle, ['model', 'brand', 'year'] as const)) {}
 
 export class UniqueVehicle extends PickType(Vehicle, ['licensePlate', 'chassi', 'renavam'] as const) {}

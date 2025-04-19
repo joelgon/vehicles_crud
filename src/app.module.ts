@@ -3,6 +3,7 @@ import { LoggerModule, Params } from 'nestjs-pino';
 import { DataSourceOptions } from 'typeorm';
 
 import { CreateVehicleUseCase } from '@src/application/vehicles/create-vehicle.use-case';
+import { UpdateVehicleUseCase } from '@src/application/vehicles/update-vehicle.use-case';
 import { DatabaseModule } from '@src/infra/database/database.module';
 import { ParamterStoreModule } from '@src/infra/paramter-store/paramter-store.module';
 import { VehiclesController } from '@src/presentation/http/vehicles.controller';
@@ -21,6 +22,6 @@ import { DATABASE_CONNECTION, LOGGER } from '@src/shared/constant/infra.constant
     }),
   ],
   controllers: [VehiclesController],
-  providers: [CreateVehicleUseCase],
+  providers: [CreateVehicleUseCase, UpdateVehicleUseCase],
 })
 export class AppModule {}
