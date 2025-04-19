@@ -3,7 +3,7 @@ import { LoggerModule, Params } from 'nestjs-pino';
 import { DataSourceOptions } from 'typeorm';
 
 import { CreateVehicleUseCase } from '@src/application/vehicles/create-vehicle.use-case';
-import { DeleteVehiclesUseCase } from '@src/application/vehicles/delete-vehicles.use-case';
+import { DeleteVehiclesUseCase } from '@src/application/vehicles/delete-vehicle.use-case';
 import { ListVehiclesUseCase } from '@src/application/vehicles/list-vehicles.use-case';
 import { UpdateVehicleUseCase } from '@src/application/vehicles/update-vehicle.use-case';
 import { DatabaseModule } from '@src/infra/database/database.module';
