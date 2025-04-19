@@ -1,3 +1,6 @@
+import { IPaginationMeta, IPaginationOptions, Pagination } from 'nestjs-typeorm-paginate';
+import { FindManyOptions, FindOptionsWhere } from 'typeorm';
+
 import { CreateVehicle, UniqueVehicle, UpdateVehicle, Vehicle } from '../entities/vehicle.entity';
 
 export interface CreateVehicleRepository {
@@ -8,4 +11,11 @@ export interface CreateVehicleRepository {
 export interface UpdateVehicleRepository {
   findOne(where: { where: { id: string } }): Promise<Vehicle | null>;
   update(id: string, updateVehicleDto: UpdateVehicle): Promise<Vehicle>;
+}
+
+export interface ListVehiclesRepository {
+  paginate(
+    options: IPaginationOptions<IPaginationMeta>,
+    searchOptions?: FindOptionsWhere<Vehicle> | FindManyOptions<Vehicle>
+  ): Promise<Pagination<Vehicle>>;
 }

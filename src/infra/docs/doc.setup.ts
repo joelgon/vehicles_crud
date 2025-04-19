@@ -2,10 +2,14 @@
 import { INestApplication } from '@nestjs/common';
 import { SwaggerModule } from '@nestjs/swagger';
 
+import { PaginationLinks, PaginationMeta } from '@src/domain/entities/paginate.entity';
+
 import { swaggerConfig } from './doc.config';
 
 export async function setupSwagger(app: INestApplication): Promise<void> {
-  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  const document = SwaggerModule.createDocument(app, swaggerConfig, {
+    extraModels: [PaginationMeta, PaginationLinks],
+  });
 
   const fastifyInstance = app.getHttpAdapter().getInstance();
 
@@ -25,5 +29,5 @@ export async function setupSwagger(app: INestApplication): Promise<void> {
     },
   });
 
-  SwaggerModule.setup('/api', app, document);
+  SwaggerModule.setup('/api-doc', app, document);
 }

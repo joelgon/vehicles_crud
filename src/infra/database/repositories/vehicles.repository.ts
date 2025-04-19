@@ -1,7 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { DataSource, Repository } from 'typeorm';
-
-import { CreateVehicleDto } from '@src/presentation/dto/create-vehicle.dto';
+import { IPaginationMeta, IPaginationOptions, paginate } from 'nestjs-typeorm-paginate';
+import { DataSource, FindManyOptions, FindOptionsWhere, Repository } from 'typeorm';
 
 import { Vehicle } from '../entities/vehicles.entity';
 
@@ -11,5 +10,9 @@ export class VehicleRepository extends Repository<Vehicle> {
 
   constructor(private readonly _dataSource: DataSource) {
     super(Vehicle, _dataSource.createEntityManager());
+  }
+
+  async paginate(options: IPaginationOptions<IPaginationMeta>, searchOptions?: FindOptionsWhere<Vehicle> | FindManyOptions<Vehicle>) {
+    return paginate<Vehicle>(this, options, searchOptions);
   }
 }
