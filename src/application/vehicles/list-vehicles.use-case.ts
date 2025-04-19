@@ -34,6 +34,6 @@ export class ListVehiclesUseCase {
         }
       }
     }
-    return this.vehicleRepository.paginate({ page: listVehicleDto.page, limit: listVehicleDto.limit }, { where, order });
+    return this.vehicleRepository.paginate({ page: listVehicleDto.page, limit: listVehicleDto.limit, route: '/vehicles' }, { where, order });
   }
 }
