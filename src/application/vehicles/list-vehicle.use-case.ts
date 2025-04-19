@@ -8,8 +8,8 @@ import { VEHICLES_REPOSITORY } from '@src/shared/constant/infra.constant';
 import { SORT_ENUM } from '@src/shared/enum/sort.enum';
 
 @Injectable()
-export class ListVehiclesUseCase {
-  private readonly _logger = new Logger(ListVehiclesUseCase.name);
+export class ListVehicleUseCase {
+  private readonly _logger = new Logger(ListVehicleUseCase.name);
 
   constructor(
     @Inject(VEHICLES_REPOSITORY)

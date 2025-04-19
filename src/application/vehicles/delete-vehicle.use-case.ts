@@ -4,8 +4,8 @@ import { DeleteVehicleRepository } from '@src/domain/repositories/vehicle.reposi
 import { VEHICLES_REPOSITORY } from '@src/shared/constant/infra.constant';
 
 @Injectable()
-export class DeleteVehiclesUseCase {
-  private readonly _logger = new Logger(DeleteVehiclesUseCase.name);
+export class DeleteVehicleUseCase {
+  private readonly _logger = new Logger(DeleteVehicleUseCase.name);
 
   constructor(
     @Inject(VEHICLES_REPOSITORY)

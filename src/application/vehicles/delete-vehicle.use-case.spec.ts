@@ -5,10 +5,10 @@ import sinon from 'sinon';
 
 import { VEHICLES_REPOSITORY } from '@src/shared/constant/infra.constant';
 
-import { DeleteVehiclesUseCase } from './delete-vehicle.use-case';
+import { DeleteVehicleUseCase } from './delete-vehicle.use-case';
 
 describe('DeleteVehiclesUseCase (unit)', () => {
-  let useCase: DeleteVehiclesUseCase;
+  let useCase: DeleteVehicleUseCase;
   let vehicleRepository: {
     findOne: sinon.SinonStub;
     delete: sinon.SinonStub;
@@ -36,7 +36,7 @@ describe('DeleteVehiclesUseCase (unit)', () => {
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        DeleteVehiclesUseCase,
+        DeleteVehicleUseCase,
         {
           provide: VEHICLES_REPOSITORY,
           useValue: vehicleRepository,
@@ -44,7 +44,7 @@ describe('DeleteVehiclesUseCase (unit)', () => {
       ],
     }).compile();
 
-    useCase = module.get(DeleteVehiclesUseCase);
+    useCase = module.get(DeleteVehicleUseCase);
   });
 
   afterEach(() => sinon.restore());

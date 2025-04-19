@@ -24,7 +24,7 @@ module.exports = {
         groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index'], 'object', 'type'],
         pathGroups: [
           {
-            pattern: '@/**',
+            pattern: '@src/**',
             group: 'internal',
             position: 'after',
           },
@@ -52,6 +52,7 @@ module.exports = {
     'import/resolver': {
       typescript: {
         alwaysTryTypes: true,
+        project: './tsconfig.json',
       },
     },
   },
