@@ -1,6 +1,10 @@
 import { DynamicModule, InjectionToken, Module } from '@nestjs/common';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
+import { VEHICLES_REPOSITORY } from '@src/shared/constant/infra.constant';
+
+import { VehicleRepository } from './repositories/vehicles.repository';
+
 @Module({})
 export class DatabaseModule {
   static forRootAsync({
@@ -13,7 +17,6 @@ export class DatabaseModule {
     return {
       module: DatabaseModule,
       global: true,
-      imports: [],
       providers: [
         {
           provide: 'DATA_SOURCE_OPTIONS',
@@ -28,8 +31,12 @@ export class DatabaseModule {
           },
           inject: ['DATA_SOURCE_OPTIONS'],
         },
+        {
+          provide: VEHICLES_REPOSITORY,
+          useClass: VehicleRepository,
+        },
       ],
-      exports: [DataSource],
+      exports: [VEHICLES_REPOSITORY],
     };
   }
 }

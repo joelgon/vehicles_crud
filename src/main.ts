@@ -1,4 +1,5 @@
 import cors from '@fastify/cors';
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { Logger } from 'nestjs-pino';
@@ -15,6 +16,8 @@ async function bootstrap() {
   app.useLogger(app.get(Logger));
 
   app.useGlobalInterceptors(new RequestInterceptor());
+
+  app.useGlobalPipes(new ValidationPipe());
 
   await setupSwagger(app);
 
