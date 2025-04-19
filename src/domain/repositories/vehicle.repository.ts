@@ -19,3 +19,8 @@ export interface ListVehiclesRepository {
     searchOptions?: FindOptionsWhere<Vehicle> | FindManyOptions<Vehicle>
   ): Promise<Pagination<Vehicle>>;
 }
+
+export interface DeleteVehicleRepository {
+  findOne(where: { where: { id: string } }): Promise<Vehicle | null>;
+  delete(id: string): Promise<void>;
+}

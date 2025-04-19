@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Query } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
 import { CreateVehicleUseCase } from '@src/application/vehicles/create-vehicle.use-case';
+import { DeleteVehiclesUseCase } from '@src/application/vehicles/delete-vehicles.use-case';
 import { ListVehiclesUseCase } from '@src/application/vehicles/list-vehicles.use-case';
 import { UpdateVehicleUseCase } from '@src/application/vehicles/update-vehicle.use-case';
 import { paginatedResponse } from '@src/domain/entities/paginate.entity';
@@ -17,7 +18,8 @@ export class VehiclesController {
   constructor(
     private readonly createVehicleUseCase: CreateVehicleUseCase,
     private readonly updateVehicleUseCase: UpdateVehicleUseCase,
-    private readonly listVehiclesUseCase: ListVehiclesUseCase
+    private readonly listVehiclesUseCase: ListVehiclesUseCase,
+    private readonly deleteVehiclesUseCase: DeleteVehiclesUseCase
   ) {}
 
   @Post()
@@ -28,7 +30,7 @@ export class VehiclesController {
 
   @Patch(':id')
   @ApiOkResponse({ type: Vehicle })
-  update(@Body() updateVehicleDto: UpdateVehicleDto, @Param('id') id: string) {
+  update(@Body() updateVehicleDto: UpdateVehicleDto, @Param('id', ParseUUIDPipe) id: string) {
     return this.updateVehicleUseCase.execute(id, updateVehicleDto);
   }
 
@@ -36,5 +38,11 @@ export class VehiclesController {
   @ApiOkResponse({ schema: paginatedResponse(Vehicle) })
   findAll(@Query() listVehicleDto: ListVehicleDto) {
     return this.listVehiclesUseCase.execute(listVehicleDto);
+  }
+
+  @Delete(':id')
+  @ApiOkResponse()
+  delete(@Param('id', ParseUUIDPipe) id: string) {
+    return this.deleteVehiclesUseCase.execute(id);
   }
 }
